@@ -2,25 +2,74 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import './App.css';
 import StudentForm from '../StudentForm/StudentForm';
+import StudentList from '../StudentList/StudentList';
+
 
 class App extends Component {
-  constructor() {
-    super();
     // Keep track of the student list
-    this.state = {
+    state = {
       studentList: [],
+      studentDetails: {
+        showDetails: false,
+        data: {}
+      }
     };
 
-    // Give our function access to `this`
-    this.addStudent = this.addStudent.bind(this);
-  }
-
   // This function is called by the StudentForm when the submit button is pressed
-  addStudent(newStudent) {
-    console.log(newStudent);
+  addStudent = newStudent => {
     // POST your data here
+    axios.post('http://localhost:5000/students', newStudent)
+      .then(res => {
+        let studentWithId = res.data;
+        this.setState({
+          studentList: [...this.state.studentList, studentWithId]
+        });
+      })
+      .catch(err => {
+        console.log('post err', err);
+      })
   }
 
+  getStudents = () => {
+    axios.get('http://localhost:5000/students')
+      .then(res => {
+        this.setState({studentList: res.data});
+      })
+      .catch(err => {
+        console.log('err', err);
+      });
+  }
+
+  deleteStudent = id => {
+    axios.delete(`http://localhost:5000/students/${id}`)
+      .then(res => {
+        //ominous...
+        let remainingStudents = this.state.studentList.filter(index => index._id !== id);
+        this.setState({studentList: remainingStudents});
+      })
+      .catch(err => {
+        console.log('delete err', err);
+      })
+  }
+
+  getDetails = student => {
+    axios.get(`https://api.github.com/users/${student}?access_token=913f20e25e454b699cbf7b4d5f3ae7fd516cafc4`)
+      .then(res => {
+        let newDetails = {
+          showDetails: true,
+          data: res.data
+        }
+        this.setState({studentDetails: newDetails});
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
+
+  componentDidMount = () => {
+    this.getStudents();
+  }
+ 
   render() {
     return (
       <div className="App">
@@ -29,8 +78,10 @@ class App extends Component {
         </header>
         <br/>
         <StudentForm addStudent={this.addStudent}/>
-
-        <p>Student list goes here.</p>
+        <StudentList studentList={this.state.studentList} 
+          deleteStudent={this.deleteStudent} 
+          studentDetails={this.state.studentDetails}
+          getDetails={this.getDetails}/>
       </div>
     );
   }

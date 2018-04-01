@@ -1,0 +1,10 @@
+.student-list {
+    border: 5px solid black;
+    width: 100%;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+

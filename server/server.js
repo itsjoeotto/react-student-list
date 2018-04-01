@@ -1,12 +1,14 @@
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
+var cors = require('cors');
 var students = require('./routes/student.router.js');
 var port = process.env.PORT || 5000;
 
 /** ---------- MIDDLEWARE ---------- **/
 app.use(bodyParser.json()); // needed for angular requests
 app.use(express.static('build'));
+app.use(cors());
 
 /** ---------- EXPRESS ROUTES ---------- **/
 app.use('/students', students);

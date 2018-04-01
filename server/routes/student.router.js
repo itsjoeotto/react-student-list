@@ -18,7 +18,7 @@ router.post('/', function (req, res) {
             console.log(err);
             res.sendStatus(500);
         } else {
-            res.sendStatus(201);
+            res.send(data);
         }
     }); // END SAVE
 }); // END POST Route
@@ -34,5 +34,18 @@ router.get('/', function (req, res) {
         }
     }); // END FIND
 }); // END GET Route
+
+// DELETE Route
+router.delete('/:studentId', function (req, res) {
+    Student.remove({_id: req.params.studentId}, function(err, data) {
+        if (err) {
+            console.log('err', err);
+            res.sendStatus(500);
+        } else {
+            console.log('deleted');
+            res.sendStatus(200);
+        }
+    });
+});
 
 module.exports = router;
