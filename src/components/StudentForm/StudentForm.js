@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import './StudentForm.css';
 
 class Student {
     constructor(github = '') {
@@ -38,8 +39,8 @@ class StudentForm extends Component {
     render() {
         return (
             <form onSubmit={this.handleSubmit}>
-                <input onChange={this.handleChange} placeholder="GitHub username" value={this.state.github} name="github" />
-                <input type="submit" value="Submit" />
+                <input className="input-field" onChange={this.handleChange} placeholder="GitHub username" value={this.state.github} name="github" />
+                <input className="submit-button" type="submit" value="Submit" />
             </form>
         );
     }

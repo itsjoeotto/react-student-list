@@ -1,6 +1,14 @@
 .student-list {
-    border: 5px solid black;
-    width: 100%;
+    border: 2px solid grey;
+    margin-top: 20px;
+    margin-left: 5%;
+    margin-right: 5%;
+    width: 90%;
+    border-collapse: collapse;
+}
+
+td {
+    border: 1px solid #dddddd;
 }
 
 tr:nth-child(even) {

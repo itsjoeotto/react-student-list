@@ -11,6 +11,8 @@ class StudentList extends Component {
                     <tbody>
                         <tr>
                             <td>User Name</td>
+                            <td><br/></td>
+                            <td><br/></td>
                         </tr>
 
                         {this.props.studentList.map(student => {
@@ -22,6 +24,11 @@ class StudentList extends Component {
                                     getDetails={this.props.getDetails} />
                             );
                         })}
+                        <tr>
+                            <td><br/></td>
+                            <td><br/></td>
+                            <td><br/></td>
+                        </tr>
                     </tbody>
                 </table>
                 {(this.props.studentDetails.showDetails) ?

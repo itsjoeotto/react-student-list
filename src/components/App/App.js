@@ -11,7 +11,8 @@ class App extends Component {
       studentList: [],
       studentDetails: {
         showDetails: false,
-        data: {}
+        data: {},
+        followers: []
       }
     };
 
@@ -57,9 +58,15 @@ class App extends Component {
       .then(res => {
         let newDetails = {
           showDetails: true,
-          data: res.data
+          data: res.data,
+          followers: []
         }
         this.setState({studentDetails: newDetails});
+        return axios.get(res.data.followers_url)
+      })
+      .then(res => {
+        let details = {...this.state.studentDetails, followers: res.data};
+        this.setState({studentDetails: details});
       })
       .catch(err => {
         console.log(err);

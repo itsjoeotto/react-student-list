@@ -4,6 +4,7 @@ class TableRow extends Component {
 
     handleDetails = () => {
         this.props.getDetails(this.props.github);
+        
     }
 
     handleDelete = () => {
