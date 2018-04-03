@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import './StudentList.css';
 import TableRow from '../TableRow/TableRow';
 import StudentDetails from '../StudentDetails/StudentDetails';
@@ -7,7 +8,7 @@ class StudentList extends Component {
     render() {
         return (
             <div>
-                <table className="student-list">
+                <table className={(!this.props.studentDetails.showDetails) ? "student-list" : "student-list-with-details"}>
                     <tbody>
                         <tr>
                             <td>User Name</td>
@@ -32,11 +33,18 @@ class StudentList extends Component {
                     </tbody>
                 </table>
                 {(this.props.studentDetails.showDetails) ?
-                 <StudentDetails studentDetails={this.props.studentDetails}/> :
+                 <StudentDetails className="details" studentDetails={this.props.studentDetails}/> :
                  null }
             </div>
         );
     }
+}
+
+StudentList.propTypes = {
+    studentList: PropTypes.array,
+    studentDetails: PropTypes.object,
+    deleteStudent: PropTypes.func,
+    getDetails: PropTypes.func,
 }
 
 export default StudentList

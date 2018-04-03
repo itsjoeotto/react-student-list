@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import './FollowersList.css';
 
 class FollowersList extends Component {
@@ -16,6 +17,10 @@ class FollowersList extends Component {
             </div>
         )
     }
+}
+
+FollowersList.propTypes = {
+    studentDetails: PropTypes.object
 }
 
 export default FollowersList;

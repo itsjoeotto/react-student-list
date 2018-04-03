@@ -7,6 +7,19 @@
     border-collapse: collapse;
 }
 
+.student-list-with-details {
+    border: 2px solid grey;
+    margin-top: 20px;
+    margin-left: 5%;
+    margin-right: 5%;
+    width: 40%;
+    border-collapse: collapse;
+}
+
+.details {
+    display: inline-block;
+}
+
 td {
     border: 1px solid #dddddd;
 }

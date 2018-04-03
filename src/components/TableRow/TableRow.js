@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class TableRow extends Component {
 
@@ -20,6 +21,13 @@ class TableRow extends Component {
             </tr>
         );
     }
+}
+
+TableRow.propTypes = {
+    github: PropTypes.string,
+    userId: PropTypes.string,
+    deleteStudent: PropTypes.func,
+    getDetails: PropTypes.func
 }
 
 export default TableRow;
